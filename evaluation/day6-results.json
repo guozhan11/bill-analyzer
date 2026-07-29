@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-07-29T17:39:29.382Z",
+  "decision": "conditional_go_pending_human_review",
+  "automatedBlockers": [],
+  "metrics": {
+    "M1_inputResolution": { "numerator": 10, "denominator": 10, "rate": 1 },
+    "M2_sourceIntegrity": { "numerator": 10, "denominator": 10, "rate": 1 },
+    "M3_citationQuoteValidity": { "numerator": 150, "denominator": 150, "rate": 1 },
+    "M4_locatorAccuracy": { "status": "human_review_required", "target": 0.95 },
+    "M5_textualFactCitationCoverage": { "numerator": 40, "denominator": 40, "rate": 1 },
+    "M6_structuralRecall": { "status": "gold_annotations_required", "target": 0.85 },
+    "M7_structuralPrecision": { "status": "human_review_required", "target": 0.9 },
+    "M8_unsupportedMaterialClaimRate": { "status": "human_review_required", "targetMaximum": 0.05 },
+    "M9_endToEnd": { "complete": 9, "expectedDegraded": 1, "successful": 10, "total": 10 },
+    "M10_latencyMs": { "samples": 10, "p50": 425.786, "p95": 815.192 }
+  },
+  "cases": [
+    { "caseId": "bill:118:hr:5551:ih", "partition": "development", "outcome": "complete", "nodeCount": 102, "parserWarnings": 0, "findingCount": 10, "verifiedCitations": 20, "totalCitations": 20, "textualFacts": 3, "citedTextualFacts": 3, "durationMs": 722.518, "scopeStatus": "whole_bill", "issues": [] },
+    { "caseId": "bill:118:hr:5378:ih", "partition": "development", "outcome": "complete", "nodeCount": 1086, "parserWarnings": 0, "findingCount": 11, "verifiedCitations": 22, "totalCitations": 22, "textualFacts": 6, "citedTextualFacts": 6, "durationMs": 815.192, "scopeStatus": "whole_bill", "issues": [] },
+    { "caseId": "bill:118:hr:1240:ih", "partition": "development", "outcome": "complete", "nodeCount": 9, "parserWarnings": 0, "findingCount": 4, "verifiedCitations": 8, "totalCitations": 8, "textualFacts": 1, "citedTextualFacts": 1, "durationMs": 782.639, "scopeStatus": "whole_bill", "issues": [] },
+    { "caseId": "bill:118:hr:6655:ih", "partition": "validation", "outcome": "complete", "nodeCount": 2049, "parserWarnings": 0, "findingCount": 11, "verifiedCitations": 22, "totalCitations": 22, "textualFacts": 6, "citedTextualFacts": 6, "durationMs": 470.892, "scopeStatus": "whole_bill", "issues": [] },
+    { "caseId": "bill:118:hr:3238:ih", "partition": "validation", "outcome": "complete", "nodeCount": 242, "parserWarnings": 0, "findingCount": 11, "verifiedCitations": 20, "totalCitations": 20, "textualFacts": 6, "citedTextualFacts": 6, "durationMs": 386.434, "scopeStatus": "whole_bill", "issues": [] },
+    { "caseId": "bill:118:s:686:is", "partition": "validation", "outcome": "complete", "nodeCount": 312, "parserWarnings": 0, "findingCount": 10, "verifiedCitations": 19, "totalCitations": 19, "textualFacts": 5, "citedTextualFacts": 5, "durationMs": 697.93, "scopeStatus": "whole_bill", "issues": [] },
+    { "caseId": "bill:118:hr:7521:ih", "partition": "validation", "outcome": "complete", "nodeCount": 65, "parserWarnings": 0, "findingCount": 5, "verifiedCitations": 6, "totalCitations": 6, "textualFacts": 3, "citedTextualFacts": 3, "durationMs": 413.366, "scopeStatus": "whole_bill", "issues": [] },
+    { "caseId": "bill:118:hr:15:ih", "partition": "validation", "outcome": "complete", "nodeCount": 155, "parserWarnings": 0, "findingCount": 10, "verifiedCitations": 19, "totalCitations": 19, "textualFacts": 4, "citedTextualFacts": 4, "durationMs": 409.118, "scopeStatus": "whole_bill", "issues": [] },
+    { "caseId": "bill:118:hr:3019:ih", "partition": "holdout", "outcome": "complete", "nodeCount": 159, "parserWarnings": 0, "findingCount": 8, "verifiedCitations": 14, "totalCitations": 14, "textualFacts": 6, "citedTextualFacts": 6, "durationMs": 425.786, "scopeStatus": "whole_bill", "issues": [] },
+    { "caseId": "bill:118:hr:1:ih", "partition": "holdout", "outcome": "degraded_expected", "nodeCount": 1055, "parserWarnings": 0, "findingCount": 0, "verifiedCitations": 0, "totalCitations": 0, "textualFacts": 0, "citedTextualFacts": 0, "durationMs": 273.724, "scopeStatus": "required", "issues": [] }
+  ]
+}

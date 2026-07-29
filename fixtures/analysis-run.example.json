@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "0.1.0",
+  "analysisRunId": "run:example-001",
+  "billId": "bill:118:hr:5551",
+  "versionCode": "ih",
+  "sourceSnapshotIds": [
+    "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  ],
+  "rubricVersion": "0.1.0",
+  "promptVersion": "0.1.0",
+  "modelId": "example-model",
+  "generatedAt": "2026-07-29T16:00:00Z",
+  "selectedLenses": ["implementation", "abundance"],
+  "findings": [
+    {
+      "id": "implementation-01",
+      "dimension": "implementation_feasibility",
+      "assessment": "tradeoff",
+      "claim": "Example claim for contract development; not a substantive analysis result.",
+      "claimType": "risk_hypothesis",
+      "billCitations": [
+        {
+          "sourceSnapshotId": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "nodeId": "bill:118:hr:5551:ih:sec-3",
+          "locator": "Sec. 3",
+          "quote": "Example text that must be replaced with a verified source quote.",
+          "charStart": 100,
+          "charEnd": 160,
+          "sourceUrl": "https://www.congress.gov/bill/118th-congress/house-bill/5551/text/ih",
+          "verified": false
+        }
+      ],
+      "externalCitations": [],
+      "reasoning": "This fixture demonstrates the required reasoning field.",
+      "counterargument": "This fixture demonstrates the required counterargument field.",
+      "confidence": "low",
+      "evidenceGap": "The example is synthetic and must never be displayed as a real finding."
+    }
+  ]
+}

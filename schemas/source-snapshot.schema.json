@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bill-critique.local/schemas/source-snapshot.schema.json",
+  "title": "Immutable source snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "sourceUrl",
+    "fetchedAt",
+    "mediaType",
+    "sha256",
+    "rawStoragePath",
+    "normalizedStoragePath",
+    "parserVersion"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "sourceUrl": { "type": "string", "format": "uri" },
+    "fetchedAt": { "type": "string", "format": "date-time" },
+    "mediaType": { "type": "string", "minLength": 1 },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "rawStoragePath": { "type": "string", "minLength": 1 },
+    "normalizedStoragePath": { "type": "string", "minLength": 1 },
+    "parserVersion": { "type": "string", "minLength": 1 },
+    "upstreamUpdatedAt": { "type": "string", "format": "date-time" }
+  }
+}

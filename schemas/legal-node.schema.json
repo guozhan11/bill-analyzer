@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bill-critique.local/schemas/legal-node.schema.json",
+  "title": "Structure-aware legal text node",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "nodeId",
+    "billId",
+    "versionCode",
+    "nodeType",
+    "citation",
+    "text",
+    "ordinal",
+    "sourceSnapshotId",
+    "charStart",
+    "charEnd",
+    "depth",
+    "classifications"
+  ],
+  "properties": {
+    "nodeId": { "type": "string", "minLength": 1 },
+    "billId": { "type": "string", "pattern": "^bill:[0-9]+:(hr|s|hjres|sjres):[0-9]+$" },
+    "versionCode": { "type": "string", "minLength": 1 },
+    "nodeType": {
+      "enum": [
+        "document",
+        "division",
+        "title",
+        "subtitle",
+        "section",
+        "subsection",
+        "paragraph",
+        "subparagraph",
+        "clause",
+        "subclause",
+        "definition",
+        "table",
+        "list",
+        "note",
+        "amendatory_instruction",
+        "quoted_statutory_text"
+      ]
+    },
+    "label": { "type": "string" },
+    "heading": { "type": "string" },
+    "citation": { "type": "string", "minLength": 1 },
+    "text": { "type": "string", "minLength": 1 },
+    "parentId": { "type": "string", "minLength": 1 },
+    "ordinal": { "type": "integer", "minimum": 0 },
+    "sourceSnapshotId": { "type": "string", "minLength": 1 },
+    "charStart": { "type": "integer", "minimum": 0 },
+    "charEnd": { "type": "integer", "minimum": 1 },
+    "depth": { "type": "integer", "minimum": 0 },
+    "classifications": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["definition", "amendatory_instruction", "quoted_statutory_text"] }
+    }
+  }
+}

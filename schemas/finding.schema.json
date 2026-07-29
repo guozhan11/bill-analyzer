@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bill-critique.local/schemas/finding.schema.json",
+  "title": "Bill critique finding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "dimension",
+    "assessment",
+    "claim",
+    "claimType",
+    "billCitations",
+    "externalCitations",
+    "reasoning",
+    "counterargument",
+    "confidence",
+    "evidenceGap"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "dimension": { "type": "string", "minLength": 1 },
+    "assessment": { "enum": ["strength", "risk", "tradeoff", "unknown"] },
+    "claim": { "type": "string", "minLength": 1 },
+    "claimType": {
+      "enum": [
+        "textual_fact",
+        "legal_context",
+        "empirical_claim",
+        "causal_inference",
+        "risk_hypothesis",
+        "normative_judgment"
+      ]
+    },
+    "billCitations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/citation" }
+    },
+    "externalCitations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/citation" }
+    },
+    "reasoning": { "type": "string", "minLength": 1 },
+    "counterargument": { "type": "string", "minLength": 1 },
+    "confidence": { "enum": ["high", "medium", "low", "unknown"] },
+    "evidenceGap": { "type": "string" }
+  },
+  "$defs": {
+    "citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceSnapshotId",
+        "nodeId",
+        "locator",
+        "quote",
+        "charStart",
+        "charEnd",
+        "sourceUrl",
+        "verified"
+      ],
+      "properties": {
+        "sourceSnapshotId": { "type": "string", "minLength": 1 },
+        "nodeId": { "type": "string", "minLength": 1 },
+        "locator": { "type": "string", "minLength": 1 },
+        "quote": { "type": "string", "minLength": 1 },
+        "charStart": { "type": "integer", "minimum": 0 },
+        "charEnd": { "type": "integer", "minimum": 1 },
+        "sourceUrl": { "type": "string", "format": "uri" },
+        "verified": { "type": "boolean" }
+      }
+    }
+  }
+}

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bill Critique MVP</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Bill Critique MVP · v0.1 controlled demo</p>
+      <h1>Critique a federal bill with evidence, not a mystery score.</h1>
+      <p class="lede">The MVP will map one explicit bill version, test its implementation structure, and present competing policy arguments with source-level citations.</p>
+
+      <section class="panel" aria-labelledby="analyze-title">
+        <div class="status-row">
+          <h2 id="analyze-title">Analyze a bill</h2>
+          <span id="readiness" class="badge">Checking configuration…</span>
+        </div>
+        <form id="bill-form">
+          <label for="bill-input">Congress.gov URL or bill number</label>
+          <div class="input-row">
+            <input id="bill-input" name="bill" type="text" value="https://www.congress.gov/bill/118th-congress/house-bill/5551" placeholder="Congress.gov URL or H.R. 5551" required>
+            <input id="congress-input" class="congress-input" name="congress" type="number" min="1" placeholder="Congress">
+            <button id="submit-button" type="submit">Fetch bill</button>
+          </div>
+        </form>
+        <p id="form-message" class="message">A Congress number is only needed when you enter a short bill number instead of a URL.</p>
+        <div class="demo-row" aria-label="Demo bills">
+          <span>Demo:</span>
+          <button type="button" class="demo-button" data-bill="https://www.congress.gov/bill/118th-congress/house-bill/5551">H.R. 5551 · normal</button>
+          <button type="button" class="demo-button" data-bill="https://www.congress.gov/bill/118th-congress/house-bill/5378">H.R. 5378 · large</button>
+          <button type="button" class="demo-button" data-bill="https://www.congress.gov/bill/118th-congress/house-bill/1">H.R. 1 · scoped</button>
+        </div>
+      </section>
+
+      <section id="result" class="result" hidden aria-live="polite">
+        <div class="result-header">
+          <div>
+            <p id="bill-kicker" class="eyebrow"></p>
+            <h2 id="bill-title" class="bill-title"></h2>
+          </div>
+          <div class="result-actions">
+            <a id="official-link" class="official-link" target="_blank" rel="noreferrer">Open official record ↗</a>
+            <button id="copy-report" class="secondary-button" type="button">Copy Markdown</button>
+            <button id="download-report" type="button">Download .md</button>
+          </div>
+        </div>
+
+        <dl id="bill-facts" class="facts"></dl>
+
+        <div class="version-bar">
+          <label for="version-select">Text version</label>
+          <select id="version-select"></select>
+          <button id="load-version" type="button">Load version</button>
+        </div>
+        <div id="scope-bar" class="scope-bar" hidden>
+          <div>
+            <strong>Scope required</strong>
+            <span>Multi-division bills must be analyzed one division at a time.</span>
+          </div>
+          <select id="scope-select" aria-label="Bill division"></select>
+          <button id="analyze-scope" type="button">Analyze division</button>
+        </div>
+
+        <div class="result-grid">
+          <article class="result-card wide critique-card">
+            <div class="card-heading">
+              <h3>Evidence-grounded critique</h3>
+              <span id="critique-meta" class="subtle"></span>
+            </div>
+            <p class="method-note">Findings distinguish bill-text facts from hypotheses and unknowns. This stage uses no external empirical evidence.</p>
+            <div id="citation-audit" class="audit-banner"></div>
+            <div id="lens-tabs" class="lens-tabs" role="tablist" aria-label="Critique lenses"></div>
+            <div id="lens-results" class="lens-results"></div>
+          </article>
+          <article class="result-card wide">
+            <h3>Applicability gate</h3>
+            <div id="applicability" class="applicability"></div>
+          </article>
+          <article class="result-card wide">
+            <h3>Cross-cutting risks</h3>
+            <div id="cross-cutting" class="finding-list"></div>
+          </article>
+          <article class="result-card wide">
+            <div class="card-heading">
+              <h3>Structural checklist</h3>
+              <span id="structure-count" class="subtle"></span>
+            </div>
+            <div id="checklist" class="checklist"></div>
+          </article>
+          <article class="result-card wide">
+            <h3>Bill map</h3>
+            <div id="bill-map" class="map-grid"></div>
+          </article>
+          <article class="result-card wide">
+            <div class="card-heading">
+              <h3>Section-aware outline</h3>
+              <span id="parser-note" class="subtle"></span>
+            </div>
+            <div id="bill-outline" class="outline"></div>
+          </article>
+          <article class="result-card wide">
+            <h3>CRS summary</h3>
+            <p id="summary-text"></p>
+          </article>
+          <article class="result-card">
+            <h3>Legislative subjects</h3>
+            <ul id="subject-list" class="tag-list"></ul>
+          </article>
+          <article class="result-card">
+            <h3>Source snapshots</h3>
+            <div id="source-list" class="source-list"></div>
+          </article>
+          <article class="result-card wide">
+            <div class="card-heading">
+              <h3>Normalized text preview</h3>
+              <span id="text-count" class="subtle"></span>
+            </div>
+            <p id="text-preview" class="text-preview"></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="MVP commitments">
+        <article>
+          <h2>One exact version</h2>
+          <p>No silent mixing of introduced, amended, or enacted text.</p>
+        </article>
+        <article>
+          <h2>Verifiable findings</h2>
+          <p>Material claims must lead back to the provision or external source that supports them.</p>
+        </article>
+        <article>
+          <h2>Multiple lenses</h2>
+          <p>Responsiveness, implementation, efficiency, equity and rights, and abundance—with assumptions visible.</p>
+        </article>
+      </section>
+
+      <footer>This controlled research demo does not provide legal advice. Findings are version-bound, evidence-limited, and require human review.</footer>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

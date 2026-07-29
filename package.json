@@ -1,0 +1,17 @@
+{
+  "name": "bill-critique-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node --env-file=.env --watch --experimental-strip-types src/server.ts",
+    "start": "node --env-file=.env --experimental-strip-types src/server.ts",
+    "check": "node --experimental-strip-types scripts/check.ts",
+    "test": "node --test --experimental-strip-types test/*.test.ts",
+    "evaluate": "node --experimental-strip-types scripts/evaluate.ts",
+    "acceptance": "node --experimental-strip-types scripts/acceptance.ts"
+  }
+}

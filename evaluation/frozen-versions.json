@@ -1,0 +1,10 @@
+{
+  "frozenAt": "2026-07-29",
+  "schemaVersion": "0.1.0",
+  "rubricVersion": "0.1.0",
+  "parserVersion": "uslm-hierarchy@0.1.0",
+  "promptVersion": "day4-deterministic-evidence@0.1.0",
+  "scopeGatePromptVersion": "day6-scope-gate@0.1.0",
+  "engineVersion": "deterministic-evidence-engine@0.1.0",
+  "notes": "Any change to these versions requires rerunning all ten frozen evaluation cases."
+}
