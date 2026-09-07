@@ -18,7 +18,12 @@ const requiredFiles = [
   "evaluation/frozen-versions.json",
   "evaluation/day6-results.json",
   "docs/DEMO_GUIDE.md",
-  "docs/DAY7_REPORT.md"
+  "docs/DAY7_REPORT.md",
+  "docs/DEPLOYMENT.md",
+  "public/config.js",
+  "src/worker.ts",
+  "wrangler.jsonc",
+  ".github/workflows/pages.yml"
 ];
 
 for (const file of requiredFiles) {

@@ -21,6 +21,7 @@
 - [ ] Human review establishes M7 ≥ 90% structural precision.
 - [ ] Human review establishes M8 ≤ 5% unsupported material claims.
 - [ ] At least 70% of material findings are rated useful and no S0 blocker exists.
-- [ ] Authentication, rate limiting, deployment configuration, and production monitoring are added before public hosting.
+- [x] Public deployment configuration, basic rate limiting, TLS and Worker logs are enabled.
+- [ ] Authentication, user-level abuse controls and operational alerting are added before promoting the demo as a production service.
 
 Current decision: **Conditional Go for a controlled demo; not approved for unsupervised public release.**

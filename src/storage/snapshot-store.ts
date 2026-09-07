@@ -1,48 +1,10 @@
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { extname, join, relative } from "node:path";
+import { join, relative } from "node:path";
 import type { SourceSnapshot } from "../domain/types.ts";
+import { extensionFor, normalizeSourceText, type SaveSnapshotInput } from "./snapshot-utils.ts";
 
-export interface SaveSnapshotInput {
-  sourceUrl: string;
-  body: string;
-  mediaType: string;
-  parserVersion: string;
-  upstreamUpdatedAt?: string;
-}
-
-function decodeEntities(value: string): string {
-  const named: Record<string, string> = {
-    amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " "
-  };
-  return value.replace(/&(#x?[0-9a-f]+|[a-z]+);/gi, (match, entity: string) => {
-    if (entity.startsWith("#x")) return String.fromCodePoint(Number.parseInt(entity.slice(2), 16));
-    if (entity.startsWith("#")) return String.fromCodePoint(Number.parseInt(entity.slice(1), 10));
-    return named[entity.toLowerCase()] ?? match;
-  });
-}
-
-export function normalizeSourceText(body: string, mediaType: string): string {
-  if (mediaType.includes("xml") || mediaType.includes("html")) {
-    return decodeEntities(
-      body
-        .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
-        .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
-        .replace(/<[^>]+>/g, " ")
-    ).replace(/\s+/g, " ").trim();
-  }
-  return body.replace(/\r\n/g, "\n").trim();
-}
-
-function extensionFor(mediaType: string, sourceUrl: string): string {
-  const urlExtension = extname(new URL(sourceUrl).pathname);
-  if (urlExtension && urlExtension.length <= 6) return urlExtension;
-  if (mediaType.includes("json")) return ".json";
-  if (mediaType.includes("xml")) return ".xml";
-  if (mediaType.includes("html")) return ".html";
-  if (mediaType.includes("pdf")) return ".pdf";
-  return ".txt";
-}
+export { normalizeSourceText } from "./snapshot-utils.ts";
 
 export function createSnapshotStore(dataRoot: string, workspaceRoot = process.cwd()) {
   const snapshotsRoot = join(dataRoot, "snapshots");

@@ -14,9 +14,15 @@ const analyzeScopeButton = document.querySelector("#analyze-scope");
 let lastInput = null;
 let lastReport = null;
 
+const configuredApiBase = String(globalThis.BILL_ANALYZER_CONFIG?.apiBaseUrl || "").replace(/\/$/, "");
+
+function apiUrl(path) {
+  return `${configuredApiBase}${path}`;
+}
+
 async function loadReadiness() {
   try {
-    const response = await fetch("/api/readiness");
+    const response = await fetch(apiUrl("/api/readiness"));
     const data = await response.json();
     const ready = data.status === "ready";
     readiness.textContent = ready ? "Congress.gov ready" : "Congress.gov API key needed";
@@ -349,7 +355,7 @@ async function ingest(versionCode, scopeNodeId) {
   setLoading(true, versionCode ? `Loading text version ${versionCode.toUpperCase()}…` : undefined);
   result.hidden = true;
   try {
-    const response = await fetch("/api/bills/ingest", {
+    const response = await fetch(apiUrl("/api/bills/ingest"), {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ ...lastInput, ...(versionCode ? { versionCode } : {}), ...(scopeNodeId ? { scopeNodeId } : {}) })

@@ -4,7 +4,7 @@ An evidence-grounded critique tool for a specific version of a United States fed
 
 The seven-day MVP focuses on structure-aware bill parsing, transparent policy lenses, verifiable citations, and calibrated uncertainty. It does not draft legislation, predict passage, or assign an overall score.
 
-## Current status: v0.1 MVP complete — Conditional Go
+## Current status: v0.1 MVP complete — public research demo, Conditional Go
 
 - Product boundary and acceptance criteria are frozen in [PRODUCT_SPEC.md](./PRODUCT_SPEC.md).
 - The analysis method is defined in [CRITIQUE_RUBRIC.md](./CRITIQUE_RUBRIC.md).
@@ -27,14 +27,15 @@ The seven-day MVP focuses on structure-aware bill parsing, transparent policy le
 - Multi-division bills are withheld from whole-bill critique until the user selects a division; H.R. 1 is the frozen degraded-mode case.
 - Rubric, parser, prompt and engine versions are frozen for the evaluated MVP build.
 - Three fixed demo stories and a repeatable acceptance command cover normal, large amendatory, and scoped omnibus behavior.
-- The build is ready for a controlled local demo; independent human quality gates remain required before public release.
+- A GitHub Pages frontend connects to a Cloudflare Worker API with R2 source snapshots, origin controls, rate limiting and server-side secret storage.
+- The build can be shared as a public research demo; independent human quality gates remain required before relying on it without supervision.
 
 ## Requirements
 
 - Node.js 22 or later
 - A Congress.gov API key for ingestion work beginning on Day 2
 
-No package installation is required for the Day 1 skeleton.
+Run `npm install` before local development or deployment.
 
 ## Run locally
 
@@ -46,6 +47,13 @@ npm run dev
 ```
 
 Open [http://127.0.0.1:3000](http://127.0.0.1:3000). The service starts without an API key, but `/api/readiness` reports that Congress.gov ingestion is not ready until `CONGRESS_API_KEY` is supplied.
+
+## Public deployment
+
+- Frontend: [https://guozhan11.github.io/bill-analyzer/](https://guozhan11.github.io/bill-analyzer/)
+- API: [https://bill-analyzer-api.psc-docket-helper.workers.dev](https://bill-analyzer-api.psc-docket-helper.workers.dev)
+
+The public frontend contains no API secret. Analysis requests go to a rate-limited Cloudflare Worker, and immutable source snapshots are stored in R2. See [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) for setup, deployment and verification.
 
 Node does not load `.env` automatically in this zero-dependency skeleton. For Day 1, either export the variables in the shell or run with Node's env-file flag:
 
@@ -96,8 +104,9 @@ src/config.ts           environment configuration
 src/domain/             bill identity, domain contracts and USLM parser
 src/adapters/           Congress.gov API boundary
 src/services/           ingestion, bill-map extraction and critique pipeline
-src/storage/            immutable source snapshots
-src/server.ts           zero-dependency HTTP service
+src/server.ts           local Node.js HTTP service
+src/worker.ts           public Cloudflare Worker API
+src/storage/            immutable local and R2 source snapshots
 schemas/                versioned JSON Schema contracts
 evaluation/cases.json   ten fixed evaluation cases
 scripts/check.ts        deterministic repository checks

@@ -12,6 +12,17 @@
     "check": "node --experimental-strip-types scripts/check.ts",
     "test": "node --test --experimental-strip-types test/*.test.ts",
     "evaluate": "node --experimental-strip-types scripts/evaluate.ts",
-    "acceptance": "node --experimental-strip-types scripts/acceptance.ts"
+    "acceptance": "node --experimental-strip-types scripts/acceptance.ts",
+    "typecheck": "tsc --noEmit",
+    "worker:dev": "wrangler dev",
+    "worker:types": "wrangler types",
+    "worker:check": "wrangler deploy --dry-run",
+    "worker:deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260907.1",
+    "@types/node": "^26.4.1",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.129.0"
   }
 }

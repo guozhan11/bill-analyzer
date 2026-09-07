@@ -1,7 +1,10 @@
 .DS_Store
+.Rhistory
 .env
+.dev.vars
 node_modules/
 coverage/
 dist/
 .data/
 *.log
+.wrangler/

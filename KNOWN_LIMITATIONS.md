@@ -20,6 +20,6 @@ This v0.1 build is a controlled research demo, not a production legal-research s
 ## Product and operations
 
 - There are no accounts, permissions, saved report library, collaboration features, or durable analysis-run database.
-- The local server has no authentication, rate limiting, TLS termination, or production hardening. Do not expose it directly to the public internet.
+- The local Node server has no authentication, rate limiting, or TLS termination and must not be exposed directly. The public Cloudflare Worker adds TLS, origin controls and basic rate limiting, but still has no user authentication or abuse-accounting system.
 - The Congress.gov API key remains server-side and `.env` is ignored, but operators remain responsible for secret handling and access control.
 - Automated gates passed, but independent human review for locator accuracy, structural recall/precision, unsupported claims, usefulness, and balance is still pending. Release status remains Conditional Go.
